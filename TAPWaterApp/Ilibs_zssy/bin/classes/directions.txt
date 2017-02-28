@@ -1,0 +1,6 @@
+使用过的偏好名
+
+类  ：ConfigBase
+public final static String FILENAME_IDEAL_CONFIG = "ideal_config";
+public final static String FILENAME_CLIENT_CONFIG = "client_config";
+public final static String FILENAME_CONFIG = "config";
