@@ -193,7 +193,10 @@ public class LoginActivity extends Activity {
 								commonRes.getLOGINID(), 
 								commonRes.getUSERNAME(),
 								commonRes.getMeterDateTimeBegin(),
-								commonRes.getMeterDateTimeEnd());
+								commonRes.getMeterDateTimeEnd(),
+								commonRes.getDepartMentId(),
+								commonRes.getDepartmentName(),
+								commonRes.getTelePhoneNo());
 					}
 					Intent mIntent=new Intent(LoginActivity.this,MainMenuActivity.class);
 					startActivity(mIntent);

@@ -238,6 +238,15 @@ public class WUploadDataActivity extends Activity {
 		req.setLongitude(String.valueOf(userEntity.getLongitude()));
 		req.setPhone(userEntity.getPhone());
 		req.setMemo1(userEntity.getMemo1());
+		req.setAvePriceFirst(userEntity.getAvePriceFirst());
+		req.setTotalNumberFirst(userEntity.getTotalNumberFirst());
+		req.setWaterTotalChargeFirst(userEntity.getWaterTotalChargeFirst());
+		req.setAvePriceSecond(userEntity.getAvePriceSecond());
+		req.setTotalNumberSecond(userEntity.getTotalNumberSecond());
+		req.setWaterTotalChargeSecond(userEntity.getWaterTotalChargeSecond());
+		req.setAvePriceThird(userEntity.getAvePriceThird());
+		req.setTotalNumberThird(userEntity.getTotalNumberThird());
+		req.setWaterTotalChargeThird(userEntity.getWaterTotalChargeThird());
 		GsonServlet<WUploadUserReq, WUploadUserRes> gServlet = new GsonServlet<WUploadUserReq, WUploadUserRes>(this);
 		gServlet.request(req, WUploadUserRes.class);
 		gServlet.setOnResponseEndListening(new OnResponseEndListening<WUploadUserReq, WUploadUserRes>() {

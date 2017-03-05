@@ -5,7 +5,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class WdbHelper extends SQLiteOpenHelper {
 
-	private static final int DATABASE_VERSION =6;
+	private static final int DATABASE_VERSION =8;
 	private static String DATABASE_NAME = "w_db";
 	public WdbHelper(Context context) {
 		super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -84,7 +84,10 @@ public class WdbHelper extends SQLiteOpenHelper {
 				" [extraChargePrice1] REAL, [extraCharge1] REAL, [extraChargePrice2] REAL, [extraCharge2] REAL, [extraTotalCharge] REAL, " +
 				"[TotalCharge] REAL, [OVERDUEMONEY] REAL, [ReadMeterRecordYear] INT, [ReadMeterRecordMonth] INT, " +
 				"[WaterMeterPositionName] nvarchar(50), [checkState] nvarchar(20), [checkDateTime] NVARCHAR(20), [checker] NVARCHAR(20), " +
-				"[chargeID] NVARCHAR(50),waterUserchargeType varchar(10),waterUserTypeId varchar(50),Memo1 varchar(300));";
+				"[chargeID] NVARCHAR(50),waterUserchargeType varchar(10),waterUserTypeId varchar(50),Memo1 varchar(300),"
+				+ " TotalNumberFirst number(10,3),AvePriceFirst number(12,3),WaterTotalChargeFirst number(12,3),"
+				+ " TotalNumberSecond number(10,3),AvePriceSecond number(12,3),WaterTotalChargeSecond number(12,3),"
+				+ " TotalNumberThird number(10,3),AvePriceThird number(12,3),WaterTotalChargeThird number(12,3));";
 		db.execSQL(strSql);
 		
 		strSql=" CREATE TABLE IF NOT EXISTS TB_WaterCharge ([CHARGEID] nvarchar(50), " +

@@ -350,6 +350,15 @@ public class WdbManager {
 			retItem.setOrMemoTag(cursor.getInt(cursor.getColumnIndex("OrMemoTag")));
 			retItem.setOrGpsTag(cursor.getInt(cursor.getColumnIndex("OrGpsTag")));
 			retItem.setIsPrint(cursor.getInt(cursor.getColumnIndex("IsPrint")));
+			retItem.setTotalNumberFirst(cursor.getDouble(cursor.getColumnIndex("TotalNumberFirst")));
+			retItem.setAvePriceFirst(cursor.getDouble(cursor.getColumnIndex("AvePriceFirst")));
+			retItem.setWaterTotalChargeFirst(cursor.getDouble(cursor.getColumnIndex("WaterTotalChargeFirst")));
+			retItem.setTotalNumberSecond(cursor.getDouble(cursor.getColumnIndex("TotalNumberSecond")));
+			retItem.setAvePriceSecond(cursor.getDouble(cursor.getColumnIndex("AvePriceSecond")));
+			retItem.setWaterTotalChargeSecond(cursor.getDouble(cursor.getColumnIndex("WaterTotalChargeSecond")));
+			retItem.setTotalNumberThird(cursor.getDouble(cursor.getColumnIndex("TotalNumberThird")));
+			retItem.setAvePriceThird(cursor.getDouble(cursor.getColumnIndex("AvePriceThird")));
+			retItem.setWaterTotalChargeThird(cursor.getDouble(cursor.getColumnIndex("WaterTotalChargeThird")));
 		}
 		return retItem;
 	}
@@ -406,6 +415,15 @@ public class WdbManager {
 			retItem.setWaterUserchargeType(cursor.getString(cursor.getColumnIndex("waterUserchargeType")));
 			retItem.setWaterUserTypeId(cursor.getString(cursor.getColumnIndex("waterUserTypeId")));
 			retItem.setMemo1(cursor.getString(cursor.getColumnIndex("Memo1")));
+			retItem.setTotalNumberFirst(cursor.getDouble(cursor.getColumnIndex("TotalNumberFirst")));
+			retItem.setAvePriceFirst(cursor.getDouble(cursor.getColumnIndex("AvePriceFirst")));
+			retItem.setWaterTotalChargeFirst(cursor.getDouble(cursor.getColumnIndex("WaterTotalChargeFirst")));
+			retItem.setTotalNumberSecond(cursor.getDouble(cursor.getColumnIndex("TotalNumberSecond")));
+			retItem.setAvePriceSecond(cursor.getDouble(cursor.getColumnIndex("AvePriceSecond")));
+			retItem.setWaterTotalChargeSecond(cursor.getDouble(cursor.getColumnIndex("WaterTotalChargeSecond")));
+			retItem.setTotalNumberThird(cursor.getDouble(cursor.getColumnIndex("TotalNumberThird")));
+			retItem.setAvePriceThird(cursor.getDouble(cursor.getColumnIndex("AvePriceThird")));
+			retItem.setWaterTotalChargeThird(cursor.getDouble(cursor.getColumnIndex("WaterTotalChargeThird")));
 		}
 		return retItem;
 	}
@@ -463,6 +481,15 @@ public class WdbManager {
 			retItem.setWaterUserchargeType(cursor.getString(cursor.getColumnIndex("waterUserchargeType")));
 			retItem.setWaterUserTypeId(cursor.getString(cursor.getColumnIndex("waterUserTypeId")));
 			retItem.setMemo1(cursor.getString(cursor.getColumnIndex("Memo1")));
+			retItem.setTotalNumberFirst(cursor.getDouble(cursor.getColumnIndex("TotalNumberFirst")));
+			retItem.setAvePriceFirst(cursor.getDouble(cursor.getColumnIndex("AvePriceFirst")));
+			retItem.setWaterTotalChargeFirst(cursor.getDouble(cursor.getColumnIndex("WaterTotalChargeFirst")));
+			retItem.setTotalNumberSecond(cursor.getDouble(cursor.getColumnIndex("TotalNumberSecond")));
+			retItem.setAvePriceSecond(cursor.getDouble(cursor.getColumnIndex("AvePriceSecond")));
+			retItem.setWaterTotalChargeSecond(cursor.getDouble(cursor.getColumnIndex("WaterTotalChargeSecond")));
+			retItem.setTotalNumberThird(cursor.getDouble(cursor.getColumnIndex("TotalNumberThird")));
+			retItem.setAvePriceThird(cursor.getDouble(cursor.getColumnIndex("AvePriceThird")));
+			retItem.setWaterTotalChargeThird(cursor.getDouble(cursor.getColumnIndex("WaterTotalChargeThird")));
 		}
 		return retItem;
 	}
@@ -544,6 +571,15 @@ public class WdbManager {
 			retItem.setWaterUserchargeType(cursor.getString(cursor.getColumnIndex("waterUserchargeType")));
 			retItem.setWaterUserTypeId(cursor.getString(cursor.getColumnIndex("waterUserTypeId")));
 			retItem.setMemo1(cursor.getString(cursor.getColumnIndex("Memo1")));
+			retItem.setTotalNumberFirst(cursor.getDouble(cursor.getColumnIndex("TotalNumberFirst")));
+			retItem.setAvePriceFirst(cursor.getDouble(cursor.getColumnIndex("AvePriceFirst")));
+			retItem.setWaterTotalChargeFirst(cursor.getDouble(cursor.getColumnIndex("WaterTotalChargeFirst")));
+			retItem.setTotalNumberSecond(cursor.getDouble(cursor.getColumnIndex("TotalNumberSecond")));
+			retItem.setAvePriceSecond(cursor.getDouble(cursor.getColumnIndex("AvePriceSecond")));
+			retItem.setWaterTotalChargeSecond(cursor.getDouble(cursor.getColumnIndex("WaterTotalChargeSecond")));
+			retItem.setTotalNumberThird(cursor.getDouble(cursor.getColumnIndex("TotalNumberThird")));
+			retItem.setAvePriceThird(cursor.getDouble(cursor.getColumnIndex("AvePriceThird")));
+			retItem.setWaterTotalChargeThird(cursor.getDouble(cursor.getColumnIndex("WaterTotalChargeThird")));
 		}
 		return retItem;
 	}
@@ -605,6 +641,7 @@ public class WdbManager {
 			retItem.setShouFei(cursor.getDouble(cursor.getColumnIndex("ShouFei")));
 			retItem.setReadMeterRecordId(cursor.getString(cursor.getColumnIndex("readMeterRecordId")));
 			retItem.setAlreadyUpload(cursor.getInt(cursor.getColumnIndex("alreadyUpload")));
+			
 			retList.add(retItem);
 		}
 		return retList;
@@ -816,6 +853,15 @@ public class WdbManager {
 		cValues.put("OrMemoTag", useritem.getOrMemoTag());// 是否修改备注
 		cValues.put("OrGpsTag", useritem.getOrGpsTag());// 是否修改GPS
 		cValues.put("IsPrint", useritem.getIsPrint());// 小票是否打未打印:1-未打印
+		cValues.put("TotalNumberFirst", useritem.getTotalNumberFirst());
+		cValues.put("AvePriceFirst", useritem.getAvePriceFirst());
+		cValues.put("WaterTotalChargeFirst", useritem.getWaterTotalChargeFirst());
+		cValues.put("TotalNumberSecond", useritem.getTotalNumberSecond());
+		cValues.put("AvePriceSecond", useritem.getAvePriceSecond());
+		cValues.put("WaterTotalChargeSecond", useritem.getWaterTotalChargeSecond());
+		cValues.put("TotalNumberThird", useritem.getTotalNumberThird());
+		cValues.put("AvePriceThird", useritem.getAvePriceThird());
+		cValues.put("WaterTotalChargeThird", useritem.getWaterTotalChargeThird());
 		db.update("TB_UserInfo", cValues, "UserId=?", new String[] { String.valueOf(useritem.getUserID()) });
 	}
 
@@ -882,6 +928,15 @@ public class WdbManager {
 			retItem.setCurrMonthFee(cursor.getDouble(cursor.getColumnIndex("CurrMonthFee")));
 			retItem.setPhone(cursor.getString(cursor.getColumnIndex("Phone")));
 			retItem.setMemo1(cursor.getString(cursor.getColumnIndex("Memo1")));
+			retItem.setTotalNumberFirst(cursor.getDouble(cursor.getColumnIndex("TotalNumberFirst")));
+			retItem.setAvePriceFirst(cursor.getDouble(cursor.getColumnIndex("AvePriceFirst")));
+			retItem.setWaterTotalChargeFirst(cursor.getDouble(cursor.getColumnIndex("WaterTotalChargeFirst")));
+			retItem.setTotalNumberSecond(cursor.getDouble(cursor.getColumnIndex("TotalNumberSecond")));
+			retItem.setAvePriceSecond(cursor.getDouble(cursor.getColumnIndex("AvePriceSecond")));
+			retItem.setWaterTotalChargeSecond(cursor.getDouble(cursor.getColumnIndex("WaterTotalChargeSecond")));
+			retItem.setTotalNumberThird(cursor.getDouble(cursor.getColumnIndex("TotalNumberThird")));
+			retItem.setAvePriceThird(cursor.getDouble(cursor.getColumnIndex("AvePriceThird")));
+			retItem.setWaterTotalChargeThird(cursor.getDouble(cursor.getColumnIndex("WaterTotalChargeThird")));
 			retList.add(retItem);
 		}
 		return retList;

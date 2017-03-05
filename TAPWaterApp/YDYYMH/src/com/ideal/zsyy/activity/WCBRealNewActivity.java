@@ -362,6 +362,7 @@ public class WCBRealNewActivity extends Activity {
 					break;
 				case 2:// 打印
 					OPPrint();
+					//BluePrint();
 					break;
 				case 3:
 					OpAdvice();
@@ -546,15 +547,15 @@ public class WCBRealNewActivity extends Activity {
 				}
 			}
 		}
-//		if (IsShowPrint) {
-//			if (!titlePopup.checkExists(2)) {
-//				titlePopup.addAction(new ActionItem(getResources().getDrawable(R.drawable.wcb_print), "打印小票", 2));
-//			}
-//		} else {
-//			if (titlePopup.checkExists(2)) {
-//				titlePopup.removeAction(2);
-//			}
-//		}
+		if (IsShowPrint) {
+			if (!titlePopup.checkExists(2)) {
+				titlePopup.addAction(new ActionItem(getResources().getDrawable(R.drawable.wcb_print), "打印小票", 2));
+			}
+		} else {
+			if (titlePopup.checkExists(2)) {
+				titlePopup.removeAction(2);
+			}
+		}
 
 	}
 
@@ -677,7 +678,8 @@ public class WCBRealNewActivity extends Activity {
 			@Override
 			public void onResponseEndSuccess(MetrePriceReq commonReq, MetrePriceRes commonRes, String errmsg,
 					int responseCode) {
-				ChaoBiaoCinfirm(waterValue,commonRes.getTotleFee(),commonRes.getAvgPrice());
+				//ChaoBiaoCinfirm(waterValue,commonRes.getTotleFee(),commonRes.getAvgPrice());
+				ChaoBiaoCinfirm(waterValue,commonRes);
 			}
 
 			@Override
@@ -690,7 +692,7 @@ public class WCBRealNewActivity extends Activity {
 	}
 
 	// 抄表数据保存
-	private void ChaoBiaoCinfirm(double waterValue,double totlefee,double avgPrice) {
+	private void ChaoBiaoCinfirm(double waterValue,MetrePriceRes res) {
 		double monthNum = Math.abs(waterValue - userItem.getLastMonthValue());
 		if (userItem.getIsSummaryMeter() == 2) {
 			monthNum = monthNum - dbmanager.GetDisWaterMeterValue(userItem.getStealNo());
@@ -700,11 +702,11 @@ public class WCBRealNewActivity extends Activity {
 		//double waterCharge = WaterUtils.round(monthNum * avgPrice, 2);
 		double extCharge1 = WaterUtils.round(dicExtPrice.get("F1") * monthNum, 2);
 		double extCharge2 = WaterUtils.round(dicExtPrice.get("F2") * monthNum, 2);
-		double dbWPrice = WaterUtils.round(totlefee + extCharge1 + extCharge2, 2);
+		double dbWPrice = WaterUtils.round(res.getTotleFee() + extCharge1 + extCharge2, 2);
 		userItem.setCurrMonthWNum((int) monthNum);
 		userItem.setCurrentMonthValue(waterValue);
-		userItem.setCurrMonthFee(totlefee);
-		userItem.setAvePrice(avgPrice);
+		userItem.setCurrMonthFee(res.getTotleFee());
+		userItem.setAvePrice(res.getAvgPrice());
 		userItem.setTotalCharge(dbWPrice);
 		userItem.setExtraTotalCharge(extCharge1+extCharge2);
 		userItem.setExtraChargePrice1(dicExtPrice.get("F1"));
@@ -713,7 +715,7 @@ public class WCBRealNewActivity extends Activity {
 		userItem.setExtraCharge2(extCharge2);
 		double preMoney = userItem.getOrPreMoney();
 		double oweMoney = userItem.getOrOweFee();
-		double levMoney = userItem.getShouFei() + preMoney - totlefee - oweMoney;
+		double levMoney = userItem.getShouFei() + preMoney - res.getTotleFee() - oweMoney;
 		if (levMoney < 0) {
 			preMoney = 0;
 			oweMoney = Math.abs(levMoney);
@@ -729,6 +731,24 @@ public class WCBRealNewActivity extends Activity {
 		userItem.setChaoBiaoDate(simpleDateFormat.format(new Date()));
 		userItem.setAlreadyUpload(1);
 		userItem.setIsChaoBiao(1);
+		if(res.getStep1()!=null)
+		{
+			userItem.setTotalNumberFirst(res.getStep1().getWaterNum());
+			userItem.setAvePriceFirst(res.getStep1().getAvgPrice());
+			userItem.setWaterTotalChargeFirst(res.getStep1().getFee());
+		}
+		if(res.getStep2()!=null)
+		{
+			userItem.setTotalNumberSecond(res.getStep2().getWaterNum());
+			userItem.setAvePriceSecond(res.getStep2().getAvgPrice());
+			userItem.setWaterTotalChargeSecond(res.getStep2().getFee());
+		}
+		if(res.getStep3()!=null)
+		{
+			userItem.setTotalNumberThird(res.getStep3().getWaterNum());
+			userItem.setAvePriceThird(res.getStep3().getAvgPrice());
+			userItem.setWaterTotalChargeThird(res.getStep3().getFee());
+		}
 
 		ly_currentvalue.setVisibility(View.VISIBLE);
 		edit_currvalue.setVisibility(View.GONE);
@@ -945,7 +965,7 @@ public class WCBRealNewActivity extends Activity {
 
 	// 蓝牙打印机打印
 	private void BluePrint() {
-		printData = PrintTemplate.GetPrintData(userItem, WCBRealNewActivity.this);
+		printData = PrintTemplate.GetPrintDataV2(userItem, WCBRealNewActivity.this);
 		if (!bService.isOpen()) {
 			bService.open();
 		}
@@ -988,8 +1008,8 @@ public class WCBRealNewActivity extends Activity {
 				dbmanager.ChangePrintState(0, userItem.getReadMeterRecordId());
 				FillData(userItem);
 				// 改变打印状态
-				// userItem.setIsPrint(0);
-				// dbmanager.UpdateUserItem(userItem);
+//				 userItem.setIsPrint(0);
+//				 dbmanager.UpdateUserItem(userItem);
 				break;
 			}
 		}
@@ -1069,8 +1089,8 @@ public class WCBRealNewActivity extends Activity {
 					//IsUoload:0-直接下载；1-打印上传后下载；2-单条上传后下载；
 //					if (IsUoload != 0 ) {
 //						if(item.getCurrentMonthValue() != userItem.getCurrentMonthValue() && item.getChaoBiaoTag() != userItem.getChaoBiaoTag()){
-						//UpCount++;
-						//if (UpCount > 3) {
+//						UpCount++;
+//						if (UpCount > 3) {
 //							if (IsUoload == 1) {
 //								OpUploadSingle();
 //								return;
@@ -1078,12 +1098,12 @@ public class WCBRealNewActivity extends Activity {
 //							if (IsUoload == 2) {
 //								UploadUserFeeState();
 //								return;
-							//}
-						//} else {
-							//UpCount = 0;
-							//Toast.makeText(WCBRealNewActivity.this, "上传数据出错，请重新操作！", Toast.LENGTH_SHORT).show();
-						//}
-						//return;
+//							}
+//						} else {
+//							UpCount = 0;
+//							Toast.makeText(WCBRealNewActivity.this, "上传数据出错，请重新操作！", Toast.LENGTH_SHORT).show();
+//						}
+//						return;
 //						}
 //					}
 					dbmanager.EditCustomerInfo(commonRes.getUserItems());
@@ -1155,6 +1175,15 @@ public class WCBRealNewActivity extends Activity {
 		req.setLongitude(String.valueOf(userEntity.getLongitude()));
 		req.setPhone(userEntity.getPhone());
 		req.setMemo1(userEntity.getMemo1());
+		req.setAvePriceFirst(userEntity.getAvePriceFirst());
+		req.setTotalNumberFirst(userEntity.getTotalNumberFirst());
+		req.setWaterTotalChargeFirst(userEntity.getWaterTotalChargeFirst());
+		req.setAvePriceSecond(userEntity.getAvePriceSecond());
+		req.setTotalNumberSecond(userEntity.getTotalNumberSecond());
+		req.setWaterTotalChargeSecond(userEntity.getWaterTotalChargeSecond());
+		req.setAvePriceThird(userEntity.getAvePriceThird());
+		req.setTotalNumberThird(userEntity.getTotalNumberThird());
+		req.setWaterTotalChargeThird(userEntity.getWaterTotalChargeThird());
 		GsonServlet<WUploadUserReq, WUploadUserRes> gServlet = new GsonServlet<WUploadUserReq, WUploadUserRes>(this);
 		gServlet.request(req, WUploadUserRes.class);
 		gServlet.setOnResponseEndListening(new OnResponseEndListening<WUploadUserReq, WUploadUserRes>() {

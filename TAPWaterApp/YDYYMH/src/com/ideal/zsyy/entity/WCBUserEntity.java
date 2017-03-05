@@ -67,6 +67,15 @@ public class WCBUserEntity {
 	private String waterUserchargeType;
 	private String waterUserTypeId;
 	private String Memo1;
+	private double totalNumberFirst;
+	private double avePriceFirst;
+	private double waterTotalChargeFirst;
+	private double totalNumberSecond;
+	private double avePriceSecond;
+	private double waterTotalChargeSecond;
+	private double totalNumberThird;
+	private double avePriceThird;
+	private double waterTotalChargeThird;
 
 	public int getUserID() {
 		return UserID;
@@ -593,4 +602,77 @@ public class WCBUserEntity {
 		IsChaoBiao = isChaoBiao;
 	}
 
+	public double getTotalNumberFirst() {
+		return totalNumberFirst;
+	}
+
+	public void setTotalNumberFirst(double totalNumberFirst) {
+		this.totalNumberFirst = totalNumberFirst;
+	}
+
+	public double getAvePriceFirst() {
+		return avePriceFirst;
+	}
+
+	public void setAvePriceFirst(double avePriceFirst) {
+		this.avePriceFirst = avePriceFirst;
+	}
+
+	public double getWaterTotalChargeFirst() {
+		return waterTotalChargeFirst;
+	}
+
+	public void setWaterTotalChargeFirst(double waterTotalChargeFirst) {
+		this.waterTotalChargeFirst = waterTotalChargeFirst;
+	}
+
+	public double getTotalNumberSecond() {
+		return totalNumberSecond;
+	}
+
+	public void setTotalNumberSecond(double totalNumberSecond) {
+		this.totalNumberSecond = totalNumberSecond;
+	}
+
+	public double getAvePriceSecond() {
+		return avePriceSecond;
+	}
+
+	public void setAvePriceSecond(double avePriceSecond) {
+		this.avePriceSecond = avePriceSecond;
+	}
+
+	public double getWaterTotalChargeSecond() {
+		return waterTotalChargeSecond;
+	}
+
+	public void setWaterTotalChargeSecond(double waterTotalChargeSecond) {
+		this.waterTotalChargeSecond = waterTotalChargeSecond;
+	}
+
+	public double getTotalNumberThird() {
+		return totalNumberThird;
+	}
+
+	public void setTotalNumberThird(double totalNumberThird) {
+		this.totalNumberThird = totalNumberThird;
+	}
+
+	public double getAvePriceThird() {
+		return avePriceThird;
+	}
+
+	public void setAvePriceThird(double avePriceThird) {
+		this.avePriceThird = avePriceThird;
+	}
+
+	public double getWaterTotalChargeThird() {
+		return waterTotalChargeThird;
+	}
+
+	public void setWaterTotalChargeThird(double waterTotalChargeThird) {
+		this.waterTotalChargeThird = waterTotalChargeThird;
+	}
+	
+	
 }

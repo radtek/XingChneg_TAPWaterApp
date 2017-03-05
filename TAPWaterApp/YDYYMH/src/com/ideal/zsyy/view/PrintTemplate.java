@@ -49,6 +49,49 @@ public class PrintTemplate {
 		arrList.add("\n----------------------\n");
 		arrList.add("\n\r");
 
-		return (String[]) arrList.toArray(new String[arrList.size()]);
+		return  arrList.toArray(new String[arrList.size()]);
 	}
+	
+	// 收费小票打印版式
+		@SuppressLint("SimpleDateFormat")
+		public static String[] GetPrintDataV2(WCBUserEntity userItem,Context context) {
+			Date currDate = new Date();
+			PreferencesService preferencesService = new PreferencesService(context);
+			List<String> arrList = new ArrayList<String>();
+			String strDate = new SimpleDateFormat("yyyy.MM.dd HH:mm").format(currDate);
+			if (userItem == null) {
+				return null;
+			}
+			arrList.add("\n\r");
+			arrList.add("\n\r");
+			arrList.add("\n\r");
+			arrList.add("\n\r");
+			arrList.add("\n\r");
+			arrList.add("\n\r");
+			arrList.add("         "+strDate+"\n");
+			arrList.add("用户号： " + userItem.getUserNo() + "\n");
+			arrList.add("户  名： " + userItem.getUserFName() + "\n");
+			arrList.add("地  址：" + userItem.getAddress() + "\n");
+			arrList.add("上期表数：" + (int) userItem.getLastMonthValue() + "\n");
+			arrList.add("本期表数：" + (int) userItem.getCurrentMonthValue() + "\n");
+			arrList.add("用水量：" + (int) userItem.getCurrMonthWNum() + "\n");
+			arrList.add("一阶水量:"+userItem.getTotalNumberFirst()+"吨\n");
+			arrList.add("一阶水价:"+userItem.getAvePriceFirst()+"元/吨\n");
+			arrList.add("一阶水费:"+userItem.getWaterTotalChargeFirst()+"元\n");
+			arrList.add("二阶水量:"+userItem.getTotalNumberSecond()+"吨\n");
+			arrList.add("二阶水价:"+userItem.getAvePriceSecond()+"元/吨\n");
+			arrList.add("二阶水费:"+userItem.getWaterTotalChargeSecond()+"元\n");
+			arrList.add("三阶水量:"+userItem.getTotalNumberThird()+"吨\n");
+			arrList.add("三阶水价:"+userItem.getAvePriceThird()+"元/吨\n");
+			arrList.add("三阶水费:"+userItem.getWaterTotalChargeThird()+"元\n");
+			arrList.add("排污费：" + userItem.getExtraCharge1() + "元/吨\n");
+			arrList.add("金额合计：" + userItem.getTotalCharge() + "元\n");
+			arrList.add("收费员：" + preferencesService.getLoginInfo().get("userName").toString() +" - "+preferencesService.getLoginInfo().get("depName").toString()+ "\n");
+			arrList.add("收费电话：" + preferencesService.getLoginInfo().get("phone") + "\n");
+			arrList.add("\n\r");
+			arrList.add("\n\r");
+			arrList.add("\n\r");
+			arrList.add("\n\r");
+			return  arrList.toArray(new String[arrList.size()]);
+		}
 }

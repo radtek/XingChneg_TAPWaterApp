@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import com.ideal.zsyy.Config;
+import com.ideal.zsyy.response.WUserRes;
 
 import android.R.integer;
 import android.content.Context;
@@ -37,7 +38,8 @@ public class PreferencesService {
 		return preferences.getBoolean("isLogin", false);
 	}
 
-	public void saveLoginInfo(String loginName, String pwd, boolean isLogin, String use_id,String userName,int MeterDateTimeBegin,int MeterDateTimeEnd) {
+	public void saveLoginInfo(String loginName, String pwd, boolean isLogin, String use_id,String userName,
+			int MeterDateTimeBegin,int MeterDateTimeEnd,String departmentId,String departName,String telPhone) {
 		SharedPreferences preferences = context.getSharedPreferences(SPF,
 				Context.MODE_PRIVATE);
 		Editor editor = preferences.edit();
@@ -49,8 +51,12 @@ public class PreferencesService {
 		editor.putString("userName", userName);
 		editor.putInt("meterdatetimebegin", MeterDateTimeBegin);
 		editor.putInt("meterdatetimeend", MeterDateTimeEnd);
+		editor.putString("depId", departmentId);
+		editor.putString("depName", departName);
+		editor.putString("phone", telPhone);
 		editor.commit();
 	}
+	
 
 	public Map<String, Object> getLoginInfo() {
 		Map<String, Object> params = new HashMap<String, Object>();
@@ -63,6 +69,9 @@ public class PreferencesService {
 		params.put("userName", preferences.getString("userName",""));
 		params.put("meterdatetimebegin", preferences.getInt("meterdatetimebegin", 0));
 		params.put("meterdatetimeend", preferences.getInt("meterdatetimeend", 25));
+		params.put("depId", preferences.getString("depId", ""));
+		params.put("depName", preferences.getString("depName",""));
+		params.put("phone",preferences.getString("phone", ""));
 		return params;
 	}
 	

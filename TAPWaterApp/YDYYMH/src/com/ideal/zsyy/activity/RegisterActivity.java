@@ -23,9 +23,11 @@ import com.jijiang.wtapp.R;
 import com.ideal.zsyy.request.SmsReq;
 import com.ideal.zsyy.request.UserRegisterReq;
 import com.ideal.zsyy.request.UserReq;
+import com.ideal.zsyy.request.WUserReq;
 import com.ideal.zsyy.response.SmsRes;
 import com.ideal.zsyy.response.UserRegisterRes;
 import com.ideal.zsyy.response.UserRes;
+import com.ideal.zsyy.response.WUserRes;
 import com.ideal.zsyy.service.PreferencesService;
 import com.ideal.zsyy.utils.IDCardUtil;
 import com.ideal2.base.gson.GsonServlet;
@@ -289,7 +291,7 @@ public class RegisterActivity extends Activity {
 				if (commonRes != null) {
 
 					String use_id = commonRes.getUserId();
-					queryLoginData(userAccount, pwd, use_id);
+					queryData(userAccount, pwd);
 				}
 			}
 
@@ -304,59 +306,56 @@ public class RegisterActivity extends Activity {
 		});
 	}
 
-	private void queryLoginData(final String user_name, final String pwd,
-			final String use_id) {
+	private void queryData(final String user_name, final String pwd) {
+		WUserReq req = new WUserReq();
+		req.setOperType("1");
+		req.setLOGINNAME(user_name);
+		req.setLOGINPASSWORD(pwd);
 
-		DataCache datacache = DataCache.getCache(this);
-		datacache.setUrl(Config.url);
-
-		UserReq req = new UserReq();
-		req.setOperType("6");
-		req.setUserAccount(user_name);
-		req.setPwd(pwd);
-
-		GsonServlet<UserReq, UserRes> gServlet = new GsonServlet<UserReq, UserRes>(
+		GsonServlet<WUserReq, WUserRes> gServlet = new GsonServlet<WUserReq, WUserRes>(
 				this);
-		gServlet.request(req, UserRes.class);
-		gServlet.setOnResponseEndListening(new OnResponseEndListening<UserReq, UserRes>() {
+		gServlet.request(req, WUserRes.class);
+		gServlet.setOnResponseEndListening(new OnResponseEndListening<WUserReq, WUserRes>() {
 
 			@Override
-			public void onResponseEnd(UserReq commonReq, UserRes commonRes,
+			public void onResponseEnd(WUserReq commonReq, WUserRes commonRes,
 					boolean result, String errmsg, int responseCode) {
-				// TODO Auto-generated method stub
-
+				
+				
 			}
 
 			@Override
-			public void onResponseEndSuccess(UserReq commonReq,
-					UserRes commonRes, String errmsg, int responseCode) {
-				// TODO Auto-generated method stub
+			public void onResponseEndSuccess(WUserReq commonReq,
+					WUserRes commonRes, String errmsg, int responseCode) {
+				
 				if (commonRes != null) {
-
-					Config.phUsers = commonRes.getPhUsers();
-					Config.phUsers.setId(use_id);
-
-					preferencesService.saveLoginInfo(user_name, pwd, true,
-							use_id,"",1,25);
-
-					Intent intent = new Intent(getApplicationContext(),
-							PersonalCenterActivity.class);
-					intent.putExtra("isFirst", true);
-					startActivity(intent);
+					if (preferencesService != null) {
+						preferencesService.saveLoginInfo(
+								commonReq.getLOGINNAME(),
+								commonReq.getLOGINPASSWORD(), true,
+								commonRes.getLOGINID(), 
+								commonRes.getUSERNAME(),
+								commonRes.getMeterDateTimeBegin(),
+								commonRes.getMeterDateTimeEnd(),
+								commonRes.getDepartMentId(),
+								commonRes.getDepartmentName(),
+								commonRes.getTelePhoneNo());
+					}
+					Intent mIntent=new Intent(RegisterActivity.this,MainMenuActivity.class);
+					startActivity(mIntent);
 					finish();
 				}
 
 			}
 
 			@Override
-			public void onResponseEndErr(UserReq commonReq, UserRes commonRes,
-					String errmsg, int responseCode) {
-				// TODO Auto-generated method stub
+			public void onResponseEndErr(WUserReq commonReq,
+					WUserRes commonRes, String errmsg, int responseCode) {
+				
 				Toast.makeText(getApplicationContext(), errmsg,
 						Toast.LENGTH_SHORT).show();
 			}
 
 		});
 	}
-
 }

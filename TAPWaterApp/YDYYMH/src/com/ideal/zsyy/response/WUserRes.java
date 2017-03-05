@@ -8,6 +8,9 @@ public class WUserRes extends CommonRes {
 	private String USERNAME;
 	private int MeterDateTimeBegin;
 	private int MeterDateTimeEnd;
+	private String departMentId;
+	private String departmentName;
+	private String telePhoneNo;
 	public String getLOGINID() {
 		return LOGINID;
 	}
@@ -31,6 +34,24 @@ public class WUserRes extends CommonRes {
 	}
 	public void setMeterDateTimeBegin(int meterDateTimeBegin) {
 		MeterDateTimeBegin = meterDateTimeBegin;
+	}
+	public String getDepartMentId() {
+		return departMentId;
+	}
+	public void setDepartMentId(String departMentId) {
+		this.departMentId = departMentId;
+	}
+	public String getDepartmentName() {
+		return departmentName;
+	}
+	public void setDepartmentName(String departmentName) {
+		this.departmentName = departmentName;
+	}
+	public String getTelePhoneNo() {
+		return telePhoneNo;
+	}
+	public void setTelePhoneNo(String telePhoneNo) {
+		this.telePhoneNo = telePhoneNo;
 	}
 	
 	
