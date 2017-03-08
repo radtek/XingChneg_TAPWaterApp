@@ -57,6 +57,31 @@ public class PreferencesService {
 		editor.commit();
 	}
 	
+	//发票编号
+	public void saveINvoicNo(String invoicNo)
+	{
+		SharedPreferences preferences = context.getSharedPreferences(SPF,
+				Context.MODE_PRIVATE);
+		Editor editor = preferences.edit();
+
+		editor.putString("invoice", invoicNo);
+		editor.commit();
+	}
+	
+	//获取发票编号
+	public Long getInvoiecNo()
+	{
+		SharedPreferences preferences = context.getSharedPreferences(SPF,
+				Context.MODE_PRIVATE);
+		String inovince= preferences.getString("invoice", "0");
+		try {
+			return Long.parseLong(inovince);
+		} catch (Exception e) {
+			// TODO: handle exception
+			return 0L;
+		}
+	}
+	
 
 	public Map<String, Object> getLoginInfo() {
 		Map<String, Object> params = new HashMap<String, Object>();

@@ -111,6 +111,78 @@
             android:background="@color/l_grey" />
 
         <RelativeLayout
+            android:id="@+id/ly_invoice"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="14dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="5dip"
+            android:paddingBottom="10dp"
+            android:paddingTop="10dp" >
+
+            <TextView
+                android:id="@+id/tv_invoice_no"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_gravity="left"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="10dp"
+                android:text="发票编号"
+                android:textSize="18sp" />
+
+            <LinearLayout
+                android:id="@+id/ly_invoice_edit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_gravity="left"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="10dp"
+                android:orientation="horizontal" 
+                android:visibility="gone">
+
+                <EditText
+                    android:id="@+id/edit_invoic"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content" 
+                    android:numeric="integer"/>
+
+                <TextView
+                    android:id="@+id/tv_confirm_invoic"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:text="确认"
+                    android:textColor="#fc9b0c"
+                    android:textSize="18dp" />
+
+                <TextView
+                    android:id="@+id/tv_cancel_invoic"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:text="取消"
+                    android:textColor="#fc9b0c"
+                    android:textSize="18dp"/>
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_gravity="right"
+                android:drawableRight="@drawable/list_right_arrow1" />
+        </RelativeLayout>
+
+        <ImageView
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:background="@color/l_grey" />
+
+        <RelativeLayout
             android:id="@+id/ly_autoupdate"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"

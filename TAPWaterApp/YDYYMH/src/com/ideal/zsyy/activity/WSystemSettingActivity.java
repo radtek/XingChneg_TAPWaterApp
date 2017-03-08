@@ -2,14 +2,11 @@ package com.ideal.zsyy.activity;
 
 import java.io.IOException;
 import com.ideal.zsyy.db.WdbManager;
-import com.ideal.zsyy.request.WPriceReq;
-import com.ideal.zsyy.response.WPriceRes;
+import com.ideal.zsyy.service.PreferencesService;
 import com.ideal.zsyy.utils.AutoUpdateUtil;
 import com.ideal.zsyy.utils.DeviceHelper;
 import com.ideal.zsyy.utils.DialogCirleProgress;
 import com.ideal.zsyy.utils.FileUtils;
-import com.ideal2.base.gson.GsonServlet;
-import com.ideal2.base.gson.GsonServlet.OnResponseEndListening;
 import com.jijiang.wtapp.R;
 
 import android.app.Activity;
@@ -22,6 +19,8 @@ import android.os.Message;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -30,9 +29,13 @@ public class WSystemSettingActivity extends Activity {
 
 	private TextView tv_version;
 	private RelativeLayout ly_changeaccount, ly_clearCache,ly_autoupdate;
+	private LinearLayout ly_invoice_edit;
+	private TextView tv_invoice_no,tv_confirm_invoic,tv_cancel_invoic;
+	private EditText edit_invoic;
 	private DialogCirleProgress progress = null;
 	private WdbManager dbManager = null;
 	private Button btn_back=null;
+	private PreferencesService preferencesService;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -40,6 +43,7 @@ public class WSystemSettingActivity extends Activity {
 		setContentView(R.layout.w_system_setting);
 		progress = new DialogCirleProgress(WSystemSettingActivity.this);
 		dbManager = new WdbManager(WSystemSettingActivity.this);
+		preferencesService=new PreferencesService(WSystemSettingActivity.this);
 		this.initView();
 		this.InitData();
 	}
@@ -49,7 +53,14 @@ public class WSystemSettingActivity extends Activity {
 		ly_changeaccount = (RelativeLayout) findViewById(R.id.ly_changeaccount);
 		ly_clearCache = (RelativeLayout) findViewById(R.id.ly_clearcache);
 		ly_autoupdate=(RelativeLayout)findViewById(R.id.ly_autoupdate);
-		
+		ly_invoice_edit=(LinearLayout)findViewById(R.id.ly_invoice_edit);
+		tv_invoice_no=(TextView)findViewById(R.id.tv_invoice_no);
+		tv_cancel_invoic=(TextView)findViewById(R.id.tv_cancel_invoic);
+		tv_confirm_invoic=(TextView)findViewById(R.id.tv_confirm_invoic);
+		tv_invoice_no.setOnClickListener(clickListener);
+		tv_cancel_invoic.setOnClickListener(clickListener);
+		tv_confirm_invoic.setOnClickListener(clickListener);
+		edit_invoic=(EditText)findViewById(R.id.edit_invoic);
 		btn_back=(Button)findViewById(R.id.btn_back);
 		if (ly_changeaccount != null) {
 			ly_changeaccount.setOnClickListener(new OnClickListener() {
@@ -147,6 +158,7 @@ public class WSystemSettingActivity extends Activity {
 				public void onClick(View v) {
 					// TODO Auto-generated method stub
 					finish();
+					
 				}
 			});
 		}
@@ -158,7 +170,37 @@ public class WSystemSettingActivity extends Activity {
 			tv_version.setText(DeviceHelper
 					.getVersionName(WSystemSettingActivity.this));
 		}
+		Long iNo=preferencesService.getInvoiecNo();
+		tv_invoice_no.setText("发票编号   "+iNo);
+		edit_invoic.setText(preferencesService.getInvoiecNo().toString());
 	}
+	
+	private OnClickListener clickListener=new OnClickListener() {
+		
+		@Override
+		public void onClick(View v) {
+			// TODO Auto-generated method stub
+			switch (v.getId()) {
+			case R.id.tv_invoice_no:
+				ly_invoice_edit.setVisibility(View.VISIBLE);
+				tv_invoice_no.setVisibility(View.GONE);
+				break;
+			case R.id.tv_confirm_invoic:
+				String invoicNo=edit_invoic.getText().toString();
+				preferencesService.saveINvoicNo(invoicNo);
+				tv_invoice_no.setText("发票编号  "+invoicNo);
+				ly_invoice_edit.setVisibility(View.GONE);
+				tv_invoice_no.setVisibility(View.VISIBLE);
+				break;
+			case R.id.tv_cancel_invoic:
+				ly_invoice_edit.setVisibility(View.GONE);
+				tv_invoice_no.setVisibility(View.VISIBLE);
+				break;
+			default:
+				break;
+			}
+		}
+	};
 
 	@Override
 	protected void onDestroy() {

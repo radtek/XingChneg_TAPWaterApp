@@ -178,7 +178,7 @@ public class BluetoothPrintService {
 			try {
 				if(arrData==null||arrData.length==0)
 				{
-					return 0;
+					return 3;//沒有需打印的内容
 				}
 				outputStream.write(byteCommands[1]);
 				for(String sendData:arrData)

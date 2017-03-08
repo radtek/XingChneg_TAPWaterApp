@@ -10,6 +10,7 @@ import com.ideal.zsyy.entity.ActionItem;
 import com.ideal.zsyy.entity.LocationInfo;
 import com.ideal.zsyy.entity.WBBItem;
 import com.ideal.zsyy.entity.WCBUserEntity;
+import com.ideal.zsyy.request.InvoiceReq;
 import com.ideal.zsyy.request.MetrePriceReq;
 import com.ideal.zsyy.request.WSingleUserItemReq;
 import com.ideal.zsyy.request.WUploadUserReq;
@@ -26,6 +27,7 @@ import com.ideal.zsyy.view.LayoutFontSize;
 import com.ideal.zsyy.view.PrintTemplate;
 import com.ideal.zsyy.view.TitlePopup;
 import com.ideal.zsyy.view.TitlePopup.OnItemOnClickListener;
+import com.ideal2.base.gson.CommonRes;
 import com.ideal2.base.gson.GsonServlet;
 import com.ideal2.base.gson.GsonServlet.OnResponseEndListening;
 import com.jijiang.wtapp.R;
@@ -37,6 +39,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
@@ -1007,6 +1010,7 @@ public class WCBRealNewActivity extends Activity {
 			case 1:
 				dbmanager.ChangePrintState(0, userItem.getReadMeterRecordId());
 				FillData(userItem);
+				UploadInvoiceNo(userItem.getReadMeterRecordId());
 				// 改变打印状态
 //				 userItem.setIsPrint(0);
 //				 dbmanager.UpdateUserItem(userItem);
@@ -1015,6 +1019,43 @@ public class WCBRealNewActivity extends Activity {
 		}
 
 	};
+	
+	// 上传用户收费状态
+		private void UploadInvoiceNo(String readMeterId) {
+			Long invoiceNo=preferencesService.getInvoiecNo();
+			InvoiceReq req = new InvoiceReq();
+			req.setOperType("21");
+			req.setReadMeterId(readMeterId);
+			req.setInvoiceNo(invoiceNo+"");
+
+			GsonServlet<InvoiceReq, CommonRes> gServlet = new GsonServlet<InvoiceReq, CommonRes>(
+					this);
+			gServlet.request(req, CommonRes.class);
+			gServlet.setOnResponseEndListening(new OnResponseEndListening<InvoiceReq, CommonRes>() {
+
+				@Override
+				public void onResponseEnd(InvoiceReq commonReq, CommonRes commonRes, boolean result,
+						String errmsg, int responseCode) {
+				}
+
+				@Override
+				public void onResponseEndSuccess(InvoiceReq commonReq, CommonRes commonRes, String errmsg,
+						int responseCode) {
+					preferencesService.saveINvoicNo((preferencesService.getInvoiecNo()+1)+"");
+				}
+
+				@Override
+				public void onResponseEndErr(InvoiceReq commonReq, CommonRes commonRes, String errmsg,
+						int responseCode) {
+					Toast.makeText(getApplicationContext(), errmsg, Toast.LENGTH_SHORT).show();
+				}
+
+			});
+
+		}
+
+	
+	
 
 	// 用户建议
 	private void OpAdvice() {
