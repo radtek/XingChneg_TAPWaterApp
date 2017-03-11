@@ -70,9 +70,9 @@ public class WCBUserEntity {
 	private double totalNumberFirst;
 	private double avePriceFirst;
 	private double waterTotalChargeFirst;
-	private double totalNumberSecond;
-	private double avePriceSecond;
-	private double waterTotalChargeSecond;
+	private double totalNumberSencond;
+	private double avePriceSencond;
+	private double waterTotalChargeSencond;
 	private double totalNumberThird;
 	private double avePriceThird;
 	private double waterTotalChargeThird;
@@ -626,28 +626,28 @@ public class WCBUserEntity {
 		this.waterTotalChargeFirst = waterTotalChargeFirst;
 	}
 
-	public double getTotalNumberSecond() {
-		return totalNumberSecond;
+	public double getTotalNumberSencond() {
+		return totalNumberSencond;
 	}
 
-	public void setTotalNumberSecond(double totalNumberSecond) {
-		this.totalNumberSecond = totalNumberSecond;
+	public void setTotalNumberSencond(double totalNumberSencond) {
+		this.totalNumberSencond = totalNumberSencond;
 	}
 
-	public double getAvePriceSecond() {
-		return avePriceSecond;
+	public double getAvePriceSencond() {
+		return avePriceSencond;
 	}
 
-	public void setAvePriceSecond(double avePriceSecond) {
-		this.avePriceSecond = avePriceSecond;
+	public void setAvePriceSencond(double avePriceSencond) {
+		this.avePriceSencond = avePriceSencond;
 	}
 
-	public double getWaterTotalChargeSecond() {
-		return waterTotalChargeSecond;
+	public double getWaterTotalChargeSencond() {
+		return waterTotalChargeSencond;
 	}
 
-	public void setWaterTotalChargeSecond(double waterTotalChargeSecond) {
-		this.waterTotalChargeSecond = waterTotalChargeSecond;
+	public void setWaterTotalChargeSencond(double waterTotalChargeSencond) {
+		this.waterTotalChargeSencond = waterTotalChargeSencond;
 	}
 
 	public double getTotalNumberThird() {

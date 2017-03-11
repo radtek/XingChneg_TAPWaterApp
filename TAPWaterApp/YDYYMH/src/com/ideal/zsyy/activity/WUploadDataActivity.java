@@ -241,9 +241,9 @@ public class WUploadDataActivity extends Activity {
 		req.setAvePriceFirst(userEntity.getAvePriceFirst());
 		req.setTotalNumberFirst(userEntity.getTotalNumberFirst());
 		req.setWaterTotalChargeFirst(userEntity.getWaterTotalChargeFirst());
-		req.setAvePriceSecond(userEntity.getAvePriceSecond());
-		req.setTotalNumberSecond(userEntity.getTotalNumberSecond());
-		req.setWaterTotalChargeSecond(userEntity.getWaterTotalChargeSecond());
+		req.setAvePriceSecond(userEntity.getAvePriceSencond());
+		req.setTotalNumberSecond(userEntity.getTotalNumberSencond());
+		req.setWaterTotalChargeSecond(userEntity.getWaterTotalChargeSencond());
 		req.setAvePriceThird(userEntity.getAvePriceThird());
 		req.setTotalNumberThird(userEntity.getTotalNumberThird());
 		req.setWaterTotalChargeThird(userEntity.getWaterTotalChargeThird());
@@ -284,6 +284,7 @@ public class WUploadDataActivity extends Activity {
 	}
 
 	// 单条数据下载
+	@SuppressWarnings("unused")
 	private void GetSingleMeterData(final int UserIndex) {
 		final WCBUserEntity userItem = userList.get(UserIndex);
 		

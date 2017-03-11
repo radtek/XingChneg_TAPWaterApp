@@ -339,7 +339,8 @@ public class RegisterActivity extends Activity {
 								commonRes.getMeterDateTimeEnd(),
 								commonRes.getDepartMentId(),
 								commonRes.getDepartmentName(),
-								commonRes.getTelePhoneNo());
+								commonRes.getTelePhoneNo(),
+								commonRes.getIsPrinter());
 					}
 					Intent mIntent=new Intent(RegisterActivity.this,MainMenuActivity.class);
 					startActivity(mIntent);

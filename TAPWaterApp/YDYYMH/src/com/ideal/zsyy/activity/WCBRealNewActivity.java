@@ -34,8 +34,10 @@ import com.jijiang.wtapp.R;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -536,19 +538,19 @@ public class WCBRealNewActivity extends Activity {
 		HiddenPhoneEditer();
 
 		boolean IsShowPrint = false;
+		
+		//preferencesService.getLoginInfo().get("isPrinter").toString();
+		
 		if (IsUpTimes) {
-			if (this.userItem != null && this.userItem.getWaterUserchargeType() != null
-					&& this.userItem.getWaterUserchargeType().trim().equals("0")) {
-				if (!this.userItem.getNoteNo().startsWith("a") && !this.userItem.getNoteNo().startsWith("A")) {
-					if (userItem.getOrChaoBiaoTag() == 3) {
-						if (userItem.getIsPrint() == 1) {
-							IsShowPrint = true;
-						}
-					} else if (userItem.getOrChaoBiaoTag() == 1) {
-						IsShowPrint = true;
-					}
-				}
-			}
+			if (this.userItem != null && preferencesService.getLoginInfo().get("isPrinter").toString().equals("1")) 
+			{
+				if(userItem.getOrChaoBiaoTag() == 1)
+				{IsShowPrint = true;}
+				else if (userItem.getOrChaoBiaoTag() == 3 && userItem.getIsPrint() == 1)
+				{IsShowPrint = true;}
+				else
+				{IsShowPrint = false;}
+								}
 		}
 		if (IsShowPrint) {
 			if (!titlePopup.checkExists(2)) {
@@ -742,9 +744,9 @@ public class WCBRealNewActivity extends Activity {
 		}
 		if(res.getStep2()!=null)
 		{
-			userItem.setTotalNumberSecond(res.getStep2().getWaterNum());
-			userItem.setAvePriceSecond(res.getStep2().getAvgPrice());
-			userItem.setWaterTotalChargeSecond(res.getStep2().getFee());
+			userItem.setTotalNumberSencond(res.getStep2().getWaterNum());
+			userItem.setAvePriceSencond(res.getStep2().getAvgPrice());
+			userItem.setWaterTotalChargeSencond(res.getStep2().getFee());
 		}
 		if(res.getStep3()!=null)
 		{
@@ -960,6 +962,7 @@ public class WCBRealNewActivity extends Activity {
 
 		if (userItem.getChaoBiaoTag() == 3 && userItem.getIsPrint() == 0) {
 			Toast.makeText(WCBRealNewActivity.this, "已经打印过小票，不能重复打印", Toast.LENGTH_SHORT).show();
+			return;
 		}
 
 		IsPrint = true;
@@ -1009,8 +1012,9 @@ public class WCBRealNewActivity extends Activity {
 			switch (msg.what) {
 			case 1:
 				dbmanager.ChangePrintState(0, userItem.getReadMeterRecordId());
-				FillData(userItem);
 				UploadInvoiceNo(userItem.getReadMeterRecordId());
+				FillData(userItem);
+				
 				// 改变打印状态
 //				 userItem.setIsPrint(0);
 //				 dbmanager.UpdateUserItem(userItem);
@@ -1219,9 +1223,9 @@ public class WCBRealNewActivity extends Activity {
 		req.setAvePriceFirst(userEntity.getAvePriceFirst());
 		req.setTotalNumberFirst(userEntity.getTotalNumberFirst());
 		req.setWaterTotalChargeFirst(userEntity.getWaterTotalChargeFirst());
-		req.setAvePriceSecond(userEntity.getAvePriceSecond());
-		req.setTotalNumberSecond(userEntity.getTotalNumberSecond());
-		req.setWaterTotalChargeSecond(userEntity.getWaterTotalChargeSecond());
+		req.setAvePriceSecond(userEntity.getAvePriceSencond());
+		req.setTotalNumberSecond(userEntity.getTotalNumberSencond());
+		req.setWaterTotalChargeSecond(userEntity.getWaterTotalChargeSencond());
 		req.setAvePriceThird(userEntity.getAvePriceThird());
 		req.setTotalNumberThird(userEntity.getTotalNumberThird());
 		req.setWaterTotalChargeThird(userEntity.getWaterTotalChargeThird());

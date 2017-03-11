@@ -39,7 +39,7 @@ public class PreferencesService {
 	}
 
 	public void saveLoginInfo(String loginName, String pwd, boolean isLogin, String use_id,String userName,
-			int MeterDateTimeBegin,int MeterDateTimeEnd,String departmentId,String departName,String telPhone) {
+			int MeterDateTimeBegin,int MeterDateTimeEnd,String departmentId,String departName,String telPhone,int isPrinter) {
 		SharedPreferences preferences = context.getSharedPreferences(SPF,
 				Context.MODE_PRIVATE);
 		Editor editor = preferences.edit();
@@ -54,6 +54,7 @@ public class PreferencesService {
 		editor.putString("depId", departmentId);
 		editor.putString("depName", departName);
 		editor.putString("phone", telPhone);
+		editor.putInt("isPrinter", isPrinter);
 		editor.commit();
 	}
 	
@@ -97,6 +98,7 @@ public class PreferencesService {
 		params.put("depId", preferences.getString("depId", ""));
 		params.put("depName", preferences.getString("depName",""));
 		params.put("phone",preferences.getString("phone", ""));
+		params.put("isPrinter",preferences.getInt("isPrinter", 0));
 		return params;
 	}
 	

@@ -196,7 +196,8 @@ public class LoginActivity extends Activity {
 								commonRes.getMeterDateTimeEnd(),
 								commonRes.getDepartMentId(),
 								commonRes.getDepartmentName(),
-								commonRes.getTelePhoneNo());
+								commonRes.getTelePhoneNo(),
+								commonRes.getIsPrinter());
 					}
 					Intent mIntent=new Intent(LoginActivity.this,MainMenuActivity.class);
 					startActivity(mIntent);

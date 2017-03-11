@@ -86,7 +86,7 @@ public class WdbHelper extends SQLiteOpenHelper {
 				"[WaterMeterPositionName] nvarchar(50), [checkState] nvarchar(20), [checkDateTime] NVARCHAR(20), [checker] NVARCHAR(20), " +
 				"[chargeID] NVARCHAR(50),waterUserchargeType varchar(10),waterUserTypeId varchar(50),Memo1 varchar(300),"
 				+ " TotalNumberFirst number(10,3),AvePriceFirst number(12,3),WaterTotalChargeFirst number(12,3),"
-				+ " TotalNumberSecond number(10,3),AvePriceSecond number(12,3),WaterTotalChargeSecond number(12,3),"
+				+ " TotalNumberSencond number(10,3),AvePriceSencond number(12,3),WaterTotalChargeSencond number(12,3),"
 				+ " TotalNumberThird number(10,3),AvePriceThird number(12,3),WaterTotalChargeThird number(12,3));";
 		db.execSQL(strSql);
 		

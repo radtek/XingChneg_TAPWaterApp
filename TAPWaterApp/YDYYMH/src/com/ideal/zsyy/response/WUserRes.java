@@ -11,6 +11,7 @@ public class WUserRes extends CommonRes {
 	private String departMentId;
 	private String departmentName;
 	private String telePhoneNo;
+	private int IsPrinter;
 	public String getLOGINID() {
 		return LOGINID;
 	}
@@ -52,6 +53,12 @@ public class WUserRes extends CommonRes {
 	}
 	public void setTelePhoneNo(String telePhoneNo) {
 		this.telePhoneNo = telePhoneNo;
+	}
+	public int getIsPrinter() {
+		return IsPrinter;
+	}
+	public void setIsPrinter(int isPrinter) {
+		this.IsPrinter = isPrinter;
 	}
 	
 	
