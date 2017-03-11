@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:focusable="true"
-    android:orientation="vertical" >
+    android:focusable="true">
 
+    
     <RelativeLayout
+        android:id="@+id/rlay_topbar"
         android:layout_width="fill_parent"
         android:layout_height="50dp"
         android:layout_gravity="top"
-        android:background="#1ba9ba" >
+        android:background="#1ba9ba">
 
         <Button
             android:id="@+id/btn_back"
@@ -56,7 +57,9 @@
     <RelativeLayout
         android:layout_width="fill_parent"
         android:layout_height="30dp"
-        android:background="#18bfd3" >
+        android:background="#18bfd3" 
+        android:layout_alignParentBottom="true"
+        android:id="@+id/rlay_next">
 
         <TextView
             android:id="@+id/tv_btn_pre"
@@ -82,7 +85,9 @@
     <ScrollView
         android:id="@+id/SV_Pannl"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content" >
+        android:layout_height="wrap_content" 
+        android:layout_below="@id/rlay_topbar"
+        android:layout_above="@id/rlay_next">
 
         <RelativeLayout
             android:id="@+id/main_info_view"
@@ -807,4 +812,4 @@
         </RelativeLayout>
     </ScrollView>
 
-</LinearLayout>
+</RelativeLayout>
