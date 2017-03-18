@@ -29,12 +29,10 @@ import android.widget.Toast;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.ideal.zsyy.Config;
-import com.jijiang.wtapp.R;
 import com.ideal.zsyy.entity.SkinInfo;
 import com.ideal.zsyy.imagecache.CommonUtil;
-import com.ideal.zsyy.request.PhDoctorReq;
-import com.ideal.zsyy.response.PhDoctorRes;
 import com.ideal2.base.gson.GsonServlet;
+import com.search.wtapp.R;
 
 public class DataUtils {
 	public static final String doctor_path = Environment
@@ -49,45 +47,6 @@ public class DataUtils {
 			+ File.separator + "download";
 	
 	public static String dataurl = CommonUtil.getRootFilePath() + Config.down_path+ "/datacache/";
-
-	public static void getDoctorInfos(Context context, final PhDoctorReq req,
-			final Handler mHandler) {
-		GsonServlet<PhDoctorReq, PhDoctorRes> gServlet = new GsonServlet<PhDoctorReq, PhDoctorRes>(
-				context);
-		gServlet.request(req, PhDoctorRes.class);
-		gServlet.setOnResponseEndListening(new GsonServlet.OnResponseEndListening<PhDoctorReq, PhDoctorRes>() {
-
-			@Override
-			public void onResponseEnd(PhDoctorReq commonReq,
-					PhDoctorRes commonRes, boolean result, String errmsg,
-					int responseCode) {
-				// TODO Auto-generated method stub
-
-			}
-
-			@Override
-			public void onResponseEndSuccess(PhDoctorReq commonReq,
-					PhDoctorRes commonRes, String errmsg, int responseCode) {
-				// TODO Auto-generated method stub
-				if (commonRes != null) {
-					Message msg = mHandler.obtainMessage(0,
-							commonRes.getPhDoctorInfos());
-					mHandler.sendMessage(msg);
-					GsonBuilder gsonBuilder = new GsonBuilder();
-					Gson gson = gsonBuilder.create();
-					String data = gson.toJson(commonRes);
-					FileUtil.setDataFileCache(dataurl, data,"doctor.txt");
-				}
-			}
-
-			@Override
-			public void onResponseEndErr(PhDoctorReq commonReq,
-					PhDoctorRes commonRes, String errmsg, int responseCode) {
-				// TODO Auto-generated method stub
-
-			}
-		});
-	}
 
 	// 下载图片
 	public static Uri getImage(String imgpath, String filename) {

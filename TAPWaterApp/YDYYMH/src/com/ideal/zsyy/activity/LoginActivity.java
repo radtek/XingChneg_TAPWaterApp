@@ -4,9 +4,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import com.ideal.wdm.tools.DataCache;
-import com.ideal.zsyy.Config;
-import com.jijiang.wtapp.R;
-import com.ideal.zsyy.entity.PhUser;
+import com.search.wtapp.R;
 import com.ideal.zsyy.request.WSingleUserItemReq;
 import com.ideal.zsyy.request.WUserReq;
 import com.ideal.zsyy.response.ServerDateTimeRes;
@@ -49,12 +47,6 @@ public class LoginActivity extends Activity {
 		intent = getIntent();
 		logintype = intent.getStringExtra("logintype");
 		userName=intent.getStringExtra("userName");
-		if(userName==null||userName=="")
-		{
-			Intent intentSp=new Intent(LoginActivity.this,SplashActivity.class);
-			startActivity(intentSp);
-			finish();
-		}
 		initView();
 		if (dCache.getUrl() == null || dCache.getUrl() == "") {
 			this.inputIP();
@@ -75,7 +67,10 @@ public class LoginActivity extends Activity {
 
 			@Override
 			public void onClick(View v) {
-				GetServerDate();
+				//sysLogin();
+				Intent mIntent=new Intent(LoginActivity.this,MainMenuActivity.class);
+				startActivity(mIntent);
+				finish();
 			}
 		});
 
@@ -98,54 +93,6 @@ public class LoginActivity extends Activity {
 		aUpdate.checkVersionSys();
 	}
 	
-	private void GetServerDate() {
-		WSingleUserItemReq req = new WSingleUserItemReq();
-		req.setOperType("16");
-		req.setReadMeterRecordId("0");
-
-		GsonServlet<WSingleUserItemReq, ServerDateTimeRes> gServlet = new GsonServlet<WSingleUserItemReq, ServerDateTimeRes>(
-				this);
-		gServlet.request(req, ServerDateTimeRes.class);
-		gServlet.setOnResponseEndListening(new OnResponseEndListening<WSingleUserItemReq, ServerDateTimeRes>() {
-			@Override
-			public void onResponseEnd(WSingleUserItemReq commonReq, ServerDateTimeRes commonRes, boolean result,
-					String errmsg, int responseCode) {
-
-			}
-
-			@Override
-			public void onResponseEndSuccess(WSingleUserItemReq commonReq, ServerDateTimeRes commonRes, String errmsg,
-					int responseCode) {
-				if (commonRes != null && commonRes.getServerTime() != null ) {
-
-					// 判断网络时间，如果网络不通，不能打印
-					SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-					Date curDate = new Date(System.currentTimeMillis());
-					String LocalDate = formatter.format(curDate);
-					
-					String serverDate=commonRes.getServerTime();
-					
-					if (!serverDate.equals(LocalDate)) {
-						Toast.makeText(LoginActivity.this, "手机系统时间错误，请调整后重试！", 1).show();
-						return;
-					}
-					else
-					{
-						sysLogin();
-					}
-					return;
-				}
-
-			}
-
-			@Override
-			public void onResponseEndErr(WSingleUserItemReq commonReq, ServerDateTimeRes commonRes, String errmsg,
-					int responseCode) {
-				Toast.makeText(getApplicationContext(), errmsg, Toast.LENGTH_SHORT).show();
-			}
-
-		});
-	}
 	
 	private void sysLogin()
 	{

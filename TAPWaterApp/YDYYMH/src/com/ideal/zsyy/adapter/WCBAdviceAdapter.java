@@ -3,7 +3,7 @@ package com.ideal.zsyy.adapter;
 import java.util.List;
 
 import com.ideal.zsyy.entity.WCustomerAdviceInfo;
-import com.jijiang.wtapp.R;
+import com.search.wtapp.R;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;

@@ -1,6 +1,6 @@
 package com.ideal.zsyy.activity;
 
-import com.jijiang.wtapp.R;
+import com.search.wtapp.R;
 import com.ideal.zsyy.entity.TopVisitResInfo;
 import com.ideal.zsyy.request.CancelTopVisitReq;
 import com.ideal.zsyy.request.SmsReq;

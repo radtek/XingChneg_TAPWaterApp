@@ -4,7 +4,7 @@ import com.baidu.location.LocationClient;
 import com.baidu.location.LocationClientOption;
 import com.baidu.location.LocationClientOption.LocationMode;
 import com.baidu.mapapi.SDKInitializer;
-import com.jijiang.wtapp.R;
+import com.search.wtapp.R;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -56,7 +56,6 @@ public class MainMenuActivity extends Activity {
 		setContentView(R.layout.main_tablayout);
 		preferencesService=new PreferencesService(MainMenuActivity.this);
 		initView();
-		setviewEvent();
 	}
 
 	@SuppressWarnings("deprecation")
@@ -168,10 +167,7 @@ public class MainMenuActivity extends Activity {
 	@SuppressWarnings("deprecation")
 	@Override
 	protected void onResume() {
-		
-		if (base_fjyh != null) {
-			base_fjyh.onResume();
-		}
+	
 		super.onResume();
 		if (radioGroup.getCheckedRadioButtonId() == R.id.btn_cb) {
 			tabHost.setCurrentTabByTag("mainpage");
@@ -187,65 +183,9 @@ public class MainMenuActivity extends Activity {
 			}
 		}
 	}
-
-	private void setviewEvent() {
-		if (base_mainpage != null) {
-			View vcb = base_mainpage.findViewById(R.id.ll_chaobiao);
-			vcb.setOnClickListener(new View.OnClickListener() {//
-				RadioButton rd_btn_cb = (RadioButton) findViewById(R.id.btn_cb);
-
-				@SuppressWarnings("deprecation")
-				@Override
-				public void onClick(View v) {
-					
-					tabHost.setCurrentTabByTag("cb");
-					if (!flag_cb) {
-						base_cb = base_cb == null ? new WCBMenuView(context)
-								: base_cb;
-						lay_cb.addView(base_cb, new LayoutParams(
-								LayoutParams.FILL_PARENT,
-								LayoutParams.FILL_PARENT));
-					}
-					flag_cb = true;
-					if (rd_btn_cb != null) {
-						rd_btn_cb.setChecked(true);
-					}
-				}
-			});
-
-			View cuserSearch = base_mainpage.findViewById(R.id.ll_usersearch);
-			cuserSearch.setOnClickListener(new View.OnClickListener() {
-				RadioButton rd_btn_user_search = (RadioButton) findViewById(R.id.btn_yhcx);
-
-				@SuppressWarnings("deprecation")
-				@Override
-				public void onClick(View v) {
-					
-					tabHost.setCurrentTabByTag("yhcx");
-					if (rd_btn_user_search != null) {
-						rd_btn_user_search.setChecked(true);
-					}
-					if (!flagOper) {
-						base_yhcx = base_yhcx == null ? new UserSearchView(
-								context) : base_yhcx;
-						lay_yhcx.addView(base_yhcx, new LayoutParams(
-								LayoutParams.FILL_PARENT,
-								LayoutParams.FILL_PARENT));
-					}
-
-					flagOper = true;
-				}
-			});
-
-		}
-	}
 	
 	@Override
 	protected void onPause() {
-		
-		if (base_fjyh != null) {
-			base_fjyh.onPause();
-		}
 		super.onPause();
 	}
 

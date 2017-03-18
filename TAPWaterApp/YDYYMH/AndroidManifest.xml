@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.jijiang.wtapp"
+    package="com.search.wtapp"
     android:versionCode="18"
     android:versionName="2.0.9" >
 
@@ -155,27 +155,6 @@
             android:name="com.ideal.zsyy.activity.EditPersonInfoActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.ideal.zsyy.activity.DeptInfoActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name="com.ideal.zsyy.activity.PhDoctorInfoActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name="com.ideal.zsyy.activity.DoctorInfoActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name="com.ideal.zsyy.activity.RegisterActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name="com.ideal.zsyy.activity.OrderRegisterActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name="com.ideal.zsyy.activity.HealthInformationActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name="com.ideal.zsyy.activity.HealthInfoDetailActivity"
-            android:screenOrientation="portrait" />
-        <activity
             android:name="com.ideal.zsyy.activity.SettingActivity"
             android:screenOrientation="portrait" />
         <activity
@@ -286,88 +265,8 @@
             android:name="com.ideal.zsyy.activity.VideoPlayerActivity"
             android:screenOrientation="portrait" >
         </activity>
-        <!-- 诊疗信息查询 -->
-        <activity
-            android:name="com.ideal.zsyy.activity.ZlSearchActivity"
-            android:screenOrientation="portrait" >
-        </activity>
-        <activity
-            android:name="com.ideal.zsyy.activity.DayFeeActivity"
-            android:screenOrientation="portrait" >
-        </activity>
-        <activity
-            android:name="com.ideal.zsyy.activity.YuyueTipActivity"
-            android:screenOrientation="portrait" >
-            <intent-filter>
-                <action android:name="com.ideal.zsyy.activity.YuyueTipActivity" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name="com.ideal.zsyy.activity.OperationTipActivity"
-            android:screenOrientation="portrait" >
-            <intent-filter>
-                <action android:name="com.ideal.zsyy.activity.OperationTipActivity" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-        <!-- 诊疗 门诊 -->
-        <activity
-            android:name="com.ideal.zsyy.activity.Zl_menzhenActivity"
-            android:screenOrientation="portrait" >
-        </activity>
-        <!-- 住院费用提醒 -->
-        <activity
-            android:name="com.ideal.zsyy.activity.ZhuyuanFeeActivity"
-            android:screenOrientation="portrait" >
-            <intent-filter>
-                <action android:name="com.ideal.zsyy.activity.ZhuyuanFeeActivity" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-        <!-- 检查排队提醒 -->
-        <activity
-            android:name="com.ideal.zsyy.activity.CheckRangeActivity"
-            android:screenOrientation="portrait" >
-        </activity>
-        <!-- 检查预约提醒 -->
-        <activity
-            android:name="com.ideal.zsyy.activity.CheckOrderActivity"
-            android:screenOrientation="portrait" >
-        </activity>
-        <!-- 术后康复提醒 -->
-        <activity
-            android:name="com.ideal.zsyy.activity.OperationRecureActivity"
-            android:screenOrientation="portrait" >
-        </activity>
-        <!-- 回访查询 -->
-        <activity
-            android:name="com.ideal.zsyy.activity.BackVisitActivity"
-            android:screenOrientation="portrait" >
-        </activity>
-        <!-- 回访回复 -->
-        <activity
-            android:name="com.ideal.zsyy.activity.BackVisitEditActivity"
-            android:screenOrientation="portrait" >
-        </activity>
-        <!-- 回访详情 -->
-        <activity
-            android:name="com.ideal.zsyy.activity.BackVisitDisActivity"
-            android:screenOrientation="portrait" >
-        </activity>
-        <!-- 在线咨询 -->
-        <activity
-            android:name="com.ideal.zsyy.activity.DoctorChatActivity"
-            android:screenOrientation="portrait" >
-        </activity>
-        <!-- 诊疗住院 -->
-        <activity
-            android:name="com.ideal.zsyy.activity.Zl_HosActivity"
-            android:screenOrientation="portrait" >
-        </activity>
+        
+        
         <activity
             android:name="com.ideal.zsyy.activity.MainMenuActivity"
             android:screenOrientation="portrait"
@@ -529,34 +428,6 @@
             </intent-filter>
         </receiver>
 
-        <service
-            android:name="com.baidu.location.f"
-            android:enabled="true"
-            android:process=":remote" >
-        </service>
-        <service
-            android:name="com.ideal.zsyy.service.LocationService"
-            android:enabled="true" >
-        </service>
-        <service
-            android:name="com.ideal.zsyy.service.TickService"
-            android:enabled="true" >
-        </service>
-        <!--
-        <receiver android:name="com.ideal.zsyy.receiver.TickReceiver">
-            <intent-filter>
-                <action android:name="android.intent.action.TIME_TICK"/>
-            </intent-filter>
-        </receiver>
-        -->
-
-<!--         <receiver android:name="com.ideal.zsyy.receiver.SmsReceiver" > -->
-<!--             <intent-filter android:priority="1000" > -->
-<!--                 <action android:name="android.provider.Telephony.SMS_RECEIVED" /> -->
-
-<!--                 <category android:name="android.intent.category.DEFAULT" /> -->
-<!--             </intent-filter> -->
-<!--         </receiver> -->
     </application>
 
 </manifest>

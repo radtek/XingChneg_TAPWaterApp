@@ -3,7 +3,7 @@ package com.ideal.zsyy.activity;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import com.jijiang.wtapp.R;
+import com.search.wtapp.R;
 import com.ideal.zsyy.db.WdbManager;
 import com.ideal.zsyy.entity.FaultItem;
 import com.ideal.zsyy.entity.WBBItem;

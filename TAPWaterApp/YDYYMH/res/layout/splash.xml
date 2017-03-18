@@ -17,7 +17,6 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="30dp"
-        android:background="@drawable/selector_bt_register"
         android:paddingLeft="3dp"
         android:paddingRight="3dp"
         android:text="注    册"

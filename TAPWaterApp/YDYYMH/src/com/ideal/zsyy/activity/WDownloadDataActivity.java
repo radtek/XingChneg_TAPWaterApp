@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.xbill.DNS.tests.primary;
 
-import com.jijiang.wtapp.R;
+import com.search.wtapp.R;
 import com.ideal.zsyy.db.WdbManager;
 import com.ideal.zsyy.entity.WBBItem;
 import com.ideal.zsyy.request.WBBReq;

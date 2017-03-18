@@ -50,23 +50,23 @@ public class ZsyyApplication extends Application {
 		CrashHandler crashHandler = CrashHandler.getInstance();  
         crashHandler.init(getApplicationContext());  
         
-		mLocationClient = new LocationClient(this.getApplicationContext());
-		mMyLocationListener = new MyLocationListener();
-		mLocationClient.registerLocationListener(mMyLocationListener);
-		mVibrator = (Vibrator) getApplicationContext().getSystemService(
-				Service.VIBRATOR_SERVICE);
-		
-		Intent iservice=new Intent(getApplicationContext(),LocationService.class);
-		startService(iservice);
-		
-		Intent iserviceTick=new Intent(getApplicationContext(),TickService.class);
-		startService(iserviceTick);
-		try {
-			FileUtils.createSDDir("");
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+//		mLocationClient = new LocationClient(this.getApplicationContext());
+//		mMyLocationListener = new MyLocationListener();
+//		mLocationClient.registerLocationListener(mMyLocationListener);
+//		mVibrator = (Vibrator) getApplicationContext().getSystemService(
+//				Service.VIBRATOR_SERVICE);
+//		
+//		Intent iservice=new Intent(getApplicationContext(),LocationService.class);
+//		startService(iservice);
+//		
+//		Intent iserviceTick=new Intent(getApplicationContext(),TickService.class);
+//		startService(iserviceTick);
+//		try {
+//			FileUtils.createSDDir("");
+//		} catch (IOException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
 	}
 
 	

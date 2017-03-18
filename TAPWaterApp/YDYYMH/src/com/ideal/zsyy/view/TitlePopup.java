@@ -3,7 +3,7 @@ package com.ideal.zsyy.view;
 import java.util.ArrayList;
 
 import com.ideal.zsyy.entity.ActionItem;
-import com.jijiang.wtapp.R;
+import com.search.wtapp.R;
 
 import android.R.integer;
 import android.content.Context;

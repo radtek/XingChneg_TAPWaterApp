@@ -6,7 +6,7 @@ import java.util.Date;
 import com.ideal.zsyy.db.WdbManager;
 import com.ideal.zsyy.entity.LocationInfo;
 import com.ideal.zsyy.entity.WUserItem;
-import com.jijiang.wtapp.R;
+import com.search.wtapp.R;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;

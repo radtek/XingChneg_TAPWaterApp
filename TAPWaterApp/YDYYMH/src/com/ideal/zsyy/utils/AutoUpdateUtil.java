@@ -15,7 +15,7 @@ import android.text.TextUtils;
 import android.view.WindowManager;
 import android.widget.Toast;
 
-import com.jijiang.wtapp.R;
+import com.search.wtapp.R;
 import com.ideal.zsyy.request.VersionValidateReq;
 import com.ideal.zsyy.response.VersionValidateRes;
 import com.ideal.zsyy.service.PreferencesService;

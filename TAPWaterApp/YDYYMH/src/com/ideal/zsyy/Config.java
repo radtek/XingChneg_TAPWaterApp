@@ -1,7 +1,5 @@
 package com.ideal.zsyy;
 
-import com.ideal.zsyy.entity.PhUser;
-
 public class Config {
 
 	public static Double hospital_lat = 31.253355;
@@ -15,7 +13,6 @@ public class Config {
 
 	public static String hosId = "CD3FDDCD-97CA-4810-85AC-BFBDFD60F2BC";
 
-	public static PhUser phUsers = null;
 
 	public static String down_path = "zzyy";
 

@@ -10,7 +10,7 @@ import android.widget.BaseAdapter;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 
-import com.jijiang.wtapp.R;
+import com.search.wtapp.R;
 import com.ideal.zsyy.entity.SkinInfo;
 
 public class SkinChangeAdapter extends BaseAdapter {

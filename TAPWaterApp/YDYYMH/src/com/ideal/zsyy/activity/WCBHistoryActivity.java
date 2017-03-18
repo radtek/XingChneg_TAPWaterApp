@@ -8,7 +8,7 @@ import com.ideal.zsyy.response.WBBRes;
 import com.ideal.zsyy.response.WCBHistoryRes;
 import com.ideal2.base.gson.GsonServlet;
 import com.ideal2.base.gson.GsonServlet.OnResponseEndListening;
-import com.jijiang.wtapp.R;
+import com.search.wtapp.R;
 
 import android.app.Activity;
 import android.os.Bundle;

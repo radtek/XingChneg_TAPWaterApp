@@ -1,6 +1,6 @@
 package com.ideal.zsyy.adapter;
 
-import com.jijiang.wtapp.R;
+import com.search.wtapp.R;
 import com.ideal.zsyy.utils.Utility;
 
 import android.content.Context;

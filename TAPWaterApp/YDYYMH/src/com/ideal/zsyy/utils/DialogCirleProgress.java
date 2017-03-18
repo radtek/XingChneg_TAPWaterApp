@@ -1,7 +1,7 @@
 package com.ideal.zsyy.utils;
 
 import com.hp.hpl.sparta.xpath.ThisNodeTest;
-import com.jijiang.wtapp.R;
+import com.search.wtapp.R;
 
 import android.app.Dialog;
 import android.content.Context;

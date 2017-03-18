@@ -14,7 +14,7 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.jijiang.wtapp.R;
+import com.search.wtapp.R;
 import com.ideal.zsyy.adapter.IndicatorsAdapter;
 import com.ideal.zsyy.entity.TbLisIndicatorsX;
 import com.ideal.zsyy.request.ReportDetailReq;

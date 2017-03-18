@@ -7,7 +7,7 @@ import com.ideal.zsyy.utils.AutoUpdateUtil;
 import com.ideal.zsyy.utils.DeviceHelper;
 import com.ideal.zsyy.utils.DialogCirleProgress;
 import com.ideal.zsyy.utils.FileUtils;
-import com.jijiang.wtapp.R;
+import com.search.wtapp.R;
 
 import android.app.Activity;
 import android.app.AlertDialog;

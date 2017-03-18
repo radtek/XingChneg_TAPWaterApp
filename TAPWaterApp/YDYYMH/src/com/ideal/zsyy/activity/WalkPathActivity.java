@@ -21,7 +21,7 @@ import com.baidu.mapapi.map.Polyline;
 import com.baidu.mapapi.map.PolylineOptions;
 import com.baidu.mapapi.map.MyLocationConfiguration.LocationMode;
 import com.baidu.mapapi.model.LatLng;
-import com.jijiang.wtapp.R;
+import com.search.wtapp.R;
 import com.ideal.zsyy.db.WdbManager;
 import com.ideal.zsyy.entity.LocationInfo;
 import com.ideal.zsyy.entity.WPointItem;

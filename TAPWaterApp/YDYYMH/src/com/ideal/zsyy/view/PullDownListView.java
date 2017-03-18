@@ -1,6 +1,6 @@
 package com.ideal.zsyy.view;
 
-import com.jijiang.wtapp.R;
+import com.search.wtapp.R;
 
 import android.content.Context;
 import android.graphics.Rect;

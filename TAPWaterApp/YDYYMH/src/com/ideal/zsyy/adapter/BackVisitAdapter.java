@@ -2,7 +2,7 @@ package com.ideal.zsyy.adapter;
 
 import java.util.List;
 
-import com.jijiang.wtapp.R;
+import com.search.wtapp.R;
 import com.ideal.zsyy.entity.BackVisitInfo;
 
 import android.content.Context;

@@ -8,7 +8,7 @@ import com.ideal.zsyy.db.WdbManager;
 import com.ideal.zsyy.entity.WCustomerAdviceInfo;
 import com.ideal.zsyy.entity.WUserItem;
 import com.ideal.zsyy.service.PreferencesService;
-import com.jijiang.wtapp.R;
+import com.search.wtapp.R;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
