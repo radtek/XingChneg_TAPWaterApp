@@ -64,7 +64,8 @@ public class WCBRealNewActivity extends Activity {
 			tv_w_cb_tag, tv_w_gps, tv_confirm, tv_cancel, tv_w_benqishuiliang, tv_w_benqishuifei, tv_w_lastchaobiadate,
 			tv_update_gps, tv_w_avprice, tv_w_charge, tv_w_agv_wushuiprice, tv_w_agv_wushui_charge,
 			tv_w_agv_fujia_price, tv_w_agv_fujia_charge, tv_title, tv_confirm_phone, tv_cancel_phone, tv_w_ponsition,
-			tv_w_cb_Memo, tv_save_memo1, tv_cannle_memo1;
+			tv_w_cb_Memo, tv_save_memo1, tv_cannle_memo1,tv_l_step1,tv_j_step1,tv_f_step1,tv_l_step2,tv_j_step2,tv_f_step2,
+			tv_l_step3,tv_j_step3,tv_f_step3;
 	private EditText edit_currvalue, edit_phone, edit_memo1;
 	private ImageView img_editmonthvalue, img_editphone;
 	private TextView tv_monthvalue, tv_btn_next, tv_btn_pre;
@@ -202,7 +203,15 @@ public class WCBRealNewActivity extends Activity {
 		edit_memo1 = (EditText) findViewById(R.id.edit_memo1);
 		ly_currvalue = (LinearLayout) findViewById(R.id.ly_currvalue);
 		ly_currvalue_swith = (LinearLayout) findViewById(R.id.ly_currvalue_swith);
-
+		tv_l_step1=(TextView)findViewById(R.id.tv_l_step1);
+		tv_l_step2=(TextView)findViewById(R.id.tv_l_step2);
+		tv_l_step3=(TextView)findViewById(R.id.tv_l_step3);
+		tv_j_step1=(TextView)findViewById(R.id.tv_j_step1);
+		tv_j_step2=(TextView)findViewById(R.id.tv_j_step2);
+		tv_j_step3=(TextView)findViewById(R.id.tv_j_step3);
+		tv_f_step1=(TextView)findViewById(R.id.tv_f_step1);
+		tv_f_step2=(TextView)findViewById(R.id.tv_f_step2);
+		tv_f_step3=(TextView)findViewById(R.id.tv_f_step3);
 		TextView TV_Pre = (TextView) this.findViewById(R.id.tv_btn_pre);
 		TV_Pre.setTextSize(18);
 		TextView TV_Nexp = (TextView) this.findViewById(R.id.tv_btn_next);
@@ -514,6 +523,17 @@ public class WCBRealNewActivity extends Activity {
 		tv_w_agv_fujia_charge.setText(String.valueOf(userItem.getExtraCharge2()));
 		edit_currvalue.setText(String.valueOf((int) userItem.getCurrentMonthValue()));
 		tv_w_cb_Memo.setText(String.valueOf(userItem.getMemo1()));
+		
+		tv_l_step1.setText(String.valueOf(userItem.getTotalNumberFirst()));
+		tv_l_step2.setText(String.valueOf(userItem.getTotalNumberSencond()));
+		tv_l_step3.setText(String.valueOf(userItem.getTotalNumberThird()));
+		tv_j_step1.setText(String.valueOf(userItem.getAvePriceFirst()));
+		tv_j_step2.setText(String.valueOf(userItem.getAvePriceSencond()));
+		tv_j_step3.setText(String.valueOf(userItem.getAvePriceThird()));
+		tv_f_step1.setText(String.valueOf(userItem.getWaterTotalChargeFirst()));
+		tv_f_step2.setText(String.valueOf(userItem.getWaterTotalChargeSencond()));
+		tv_f_step3.setText(String.valueOf(userItem.getWaterTotalChargeThird()));
+		
 
 		IsPrint = false;
 		IsUoload = 0;
