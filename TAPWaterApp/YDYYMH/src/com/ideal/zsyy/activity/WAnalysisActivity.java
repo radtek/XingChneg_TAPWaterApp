@@ -9,14 +9,19 @@ import java.util.Map;
 import com.jijiang.wtapp.R;
 import com.ideal.zsyy.db.WdbManager;
 import com.ideal.zsyy.entity.ActionItem;
+import com.ideal.zsyy.entity.ChargeInfoItem;
 import com.ideal.zsyy.entity.WAnalysisItem;
 import com.ideal.zsyy.entity.WBBItem;
+import com.ideal.zsyy.request.WChargeInfoReq;
+import com.ideal.zsyy.response.WChargeInfoRes;
 import com.ideal.zsyy.service.BluetoothPrintService;
 import com.ideal.zsyy.service.BluetoothService;
 import com.ideal.zsyy.service.PreferencesService;
 import com.ideal.zsyy.service.BluetoothService.bondFinishListener;
 import com.ideal.zsyy.view.TitlePopup;
 import com.ideal.zsyy.view.TitlePopup.OnItemOnClickListener;
+import com.ideal2.base.gson.GsonServlet;
+import com.ideal2.base.gson.GsonServlet.OnResponseEndListening;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -33,6 +38,7 @@ import android.widget.RadioGroup;
 import android.widget.RadioGroup.OnCheckedChangeListener;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.AdapterView.OnItemSelectedListener;
 
 public class WAnalysisActivity extends Activity {
@@ -52,6 +58,8 @@ public class WAnalysisActivity extends Activity {
 	private String[] printData;
 	private String PrTotalCharge="",PrTotalUser="",PrTotalUnUser="",PrTotalWater="",PrDayCharge="",PrDayUser="",PrDayUnUser="",PrArea="";
 	private int CBMonth=0;
+	private String ysje="",ysfyhs="",ysfsl="";
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -62,6 +70,7 @@ public class WAnalysisActivity extends Activity {
 		userInfo=pService.getLoginInfo();
 		titlePopup = new TitlePopup(WAnalysisActivity.this);
 		titlePopup.addAction(new ActionItem(getResources().getDrawable(R.drawable.wcb_print), "打印小票", 1));
+		titlePopup.addAction(new ActionItem(getResources().getDrawable(R.drawable.wcb_update_24), "刷新数据", 2));
 		this.initView();
 		this.setEventListener();
 	}
@@ -101,11 +110,71 @@ public class WAnalysisActivity extends Activity {
 				case 1:
 					BluePrint();
 					break;
+				case 2:
+					UpdateChargeInfo();
+					break;
 				}
 			}
 		});
 	}
 
+	private void UpdateChargeInfo()
+	{
+		WChargeInfoReq req = new WChargeInfoReq();
+		req.setLoginid(userInfo.get("use_id").toString());
+		req.setOperType("22");
+		req.setTJType(rb_month.isChecked());
+
+		GsonServlet<WChargeInfoReq, WChargeInfoRes> gServlet = new GsonServlet<WChargeInfoReq, WChargeInfoRes>(this);
+
+		gServlet.request(req, WChargeInfoRes.class);
+		gServlet.setOnResponseEndListening(new OnResponseEndListening<WChargeInfoReq, WChargeInfoRes>() {
+			@Override
+			public void onResponseEnd(WChargeInfoReq commonReq, WChargeInfoRes commonRes, boolean result,
+					String errmsg, int responseCode) {
+			}
+
+			@Override
+			public void onResponseEndSuccess(WChargeInfoReq commonReq, WChargeInfoRes commonRes, String errmsg,
+					int responseCode) {
+				
+			if (commonRes != null ) {
+				commonRes.getChargeCount();
+				if (tv_ysje != null) {
+					tv_ysje.setText(ysje+"/"+commonRes.getChargeFee());
+				}
+				if (tv_ysfyhs != null) {
+					tv_ysfyhs.setText(ysfyhs+"/"+commonRes.getChargeCount());
+				}
+				if (tv_ysfsl != null) {
+					tv_ysfsl.setText(ysfsl+"/"+commonRes.getChargeWater());
+				}
+			}
+			else
+			{
+				if (tv_ysje != null) {
+					tv_ysje.setText(ysje+"/--");
+				}
+				if (tv_ysfyhs != null) {
+					tv_ysfyhs.setText(ysfyhs+"/--");
+				}
+				if (tv_ysfsl != null) {
+					tv_ysfsl.setText(ysfsl+"/--");
+				}
+			}
+				
+				Toast.makeText(WAnalysisActivity.this, "更新成功！", Toast.LENGTH_SHORT).show();
+			}
+
+			@Override
+			public void onResponseEndErr(WChargeInfoReq commonReq, WChargeInfoRes commonRes, String errmsg,
+					int responseCode) {
+				Toast.makeText(getApplicationContext(), errmsg, Toast.LENGTH_SHORT).show();
+
+			}
+		});
+	}
+	
 	// 蓝牙打印机打印
 	private void BluePrint() {
 		printData = GetPrintData();
@@ -165,7 +234,7 @@ public class WAnalysisActivity extends Activity {
 		Date currDate = new Date();
 		List<String> arrList = new ArrayList<String>();
 		String strDate = new SimpleDateFormat("yyyy年MM月dd日  HH:mm:ss ").format(currDate);
-		arrList.add("\n喀左县自来水公司");
+		arrList.add("\n兴城市自来水公司");
 		arrList.add("抄表统计凭条\n");
 		arrList.add("\n\r");
 		arrList.add("\n\r");
@@ -262,15 +331,17 @@ public class WAnalysisActivity extends Activity {
 		}
 		if (isMonthCheck) {
 			wItem = wManager.GetAnalysisItemByMonth(noteNO);
-			PrTotalCharge=wItem.getYsje();
-			PrTotalUser=wItem.getYsfyhs();
+			ysje=PrTotalCharge=wItem.getYsje();
+			ysfyhs=PrTotalUser=wItem.getYsfyhs();
 			PrTotalUnUser=wItem.getYcb();
-			PrTotalWater=wItem.getYsfsl();
+			ysfsl=PrTotalWater=wItem.getYsfsl();
+			
 		} else {
 			wItem = wManager.GetAnalysisItemByDay(noteNO);
-			PrDayCharge=wItem.getYsje();
-			PrDayUser=wItem.getYsfyhs();
+			ysje=PrDayCharge=wItem.getYsje();
+			ysfyhs=PrDayUser=wItem.getYsfyhs();
 			PrDayUnUser=wItem.getYcb();
+			ysfsl=wItem.getYsfsl();
 		}
 		if (wItem != null) {
 			if (tv_yhzs != null) {
@@ -291,19 +362,20 @@ public class WAnalysisActivity extends Activity {
 			if (tv_zfy != null) {
 				tv_zfy.setText(wItem.getZfy());
 			}
-			if (tv_ysje != null) {
-				tv_ysje.setText(wItem.getYsje());
-			}
+//			if (tv_ysje != null) {
+//				tv_ysje.setText(wItem.getYsje());
+//			}
 			if (tv_wsje != null) {
 				tv_wsje.setText(wItem.getWsje());
 			}
-			if (tv_ysfyhs != null) {
-				tv_ysfyhs.setText(wItem.getYsfyhs());
-			}
-			if (tv_ysfsl != null) {
-				tv_ysfsl.setText(wItem.getYsfsl());
-			}
+//			if (tv_ysfyhs != null) {
+//				tv_ysfyhs.setText(wItem.getYsfyhs());
+//			}
+//			if (tv_ysfsl != null) {
+//				tv_ysfsl.setText(wItem.getYsfsl());
+//			}
 		}
+		UpdateChargeInfo();
 	}
 
 	@Override
